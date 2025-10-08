@@ -992,5 +992,12 @@ body.light-mode .passion-content p {
 @media (max-width: 1024px) {
     body:not(.light-mode) {
         background-attachment: scroll; /* 'fixed'を解除してモバイルでのズーム問題を回避 */
+        background-size: contain; /* モバイルでは contain に切り替え */
+        background-repeat: no-repeat; /* contain を使う際は no-repeat を推奨 */
+    }
+
+    body.light-mode .hero {
+        background-size: contain; /* モバイルでは contain に切り替え */
+        background-repeat: no-repeat; /* contain を使う際は no-repeat を推奨 */
     }
 }
