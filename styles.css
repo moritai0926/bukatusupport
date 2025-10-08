@@ -367,7 +367,8 @@ body:not(.light-mode) {
 .pricing-card.featured { border: 2px solid var(--secondary-accent); transform: scale(1.05); }
 
 .pricing-badge {
-    margin: 0 auto 20px auto; /* Center horizontally, add 20px bottom margin */
+    align-self: center; /* Center horizontally in the flex container */
+    margin-bottom: 20px; /* Keep the bottom margin */
     width: fit-content;
     padding: 5px 20px;
     border-radius: 50px;
