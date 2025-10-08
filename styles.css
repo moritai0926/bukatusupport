@@ -365,26 +365,7 @@ body:not(.light-mode) {
 
 /* --- 料金セクション --- */
 .pricing { padding: 100px 0; border-bottom: 1px solid var(--border-color); background-color: transparent; }
-.pricing-card.featured {
-    transform: scale(1.05);
-    border: 2px solid transparent; /* Make border transparent to apply gradient background */
-    background-clip: padding-box; /* Important for gradient border effect */
-    position: relative; /* Needed for pseudo-element */
-    box-shadow: 0 10px 50px -10px var(--secondary-accent); /* Add a colored glow */
-}
-
-.pricing-card.featured::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    margin: -2px; /* Match the border width */
-    border-radius: inherit; /* Inherit the parent's border-radius */
-    background: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
-}
+.pricing-card.featured { border: 2px solid var(--secondary-accent); transform: scale(1.05); }
 
 .pricing-badge {
     background: var(--secondary-accent);
