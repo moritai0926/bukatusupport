@@ -367,13 +367,10 @@ body:not(.light-mode) {
 .pricing-card.featured { border: 2px solid var(--secondary-accent); transform: scale(1.05); }
 
 .pricing-badge {
-    position: absolute;
-    top: -15px; /* Adjust to overlap the top border nicely */
-    left: 50%;
-    transform: translateX(-50%);
-    width: fit-content; /* Make width based on content */
-    padding: 5px 20px; /* Add some padding */
-    border-radius: 50px; /* Make it a pill shape */
+    margin: 0 auto 20px auto; /* Center horizontally, add 20px bottom margin */
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 50px;
     background: var(--secondary-accent);
     color: white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
