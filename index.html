@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-discipline - 北大生メンターによる部活と勉強の両立支援</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        // FOUC (Flash of Unstyled Content) を防ぐため、テーマを即時適用
+        (function() {
+            const theme = localStorage.getItem('theme');
+            if (theme === 'light') {
+                document.documentElement.classList.add('light-mode');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Self-discipline</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#pricing">料金</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-primary">無料相談</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">部活も勉強も、<br><span class="highlight-text">二兎追って二兎得ろ</span></h1>
+                <p class="hero-subtitle">北大生メンターがあなたの<span class="hero-subtitle-highlight">文武両道</span>を全力サポート<br><span class="hero-subtitle-highlight">月額15,000円</span>で実現する理想の学習環境</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">サービス詳細を見る <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary">無料相談を申し込む <i class="fas fa-envelope"></i></a>
+                    <a href="./trial/index.html" class="btn btn-primary btn-trial">無料体験を試す <i class="fas fa-rocket"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 思いセクション -->
+    <section id="passion">
+        <div class="container">
+            <h2 class="section-title">私たちの思い</h2>
+            <div class="passion-content">
+                <h3 class="passion-philosophy">”青い情熱を解き放つ”</h3>
+                <p>何かに挑戦したいという情熱を持っているが、なかなかその情熱を解き放てずにいる人たちの挑戦を応援したい。</p>
+                <p>私たちは、部活も勉強も頑張りたいという情熱を持った高校生の両立を「環境」を提供することで応援します。</p>
+                <p>大学受験において、高校1・2年生のうちから受験を見据えて勉強を開始できる生徒は、大きな強みを持っています。しかし、多くの高校生にとって、この時期から高いモチベーションを維持し、学習を継続することは容易ではありません。</p>
+                <p>その最も大きな要因は「環境」です。費用面で早期からの塾通いが難しい生徒や、塾に通ってもただ授業を消費するだけになってしまう生徒も少なくありません。私たちは、こうした課題を解決したいと考えています。</p>
+                <p>同じ目標に向かって切磋琢磨した経験を持つ北大生メンターとの対話を通じて、受験から逆算した学習計画を立て、それをオンライン自習室で着実に実行できる、唯一無二の「環境」を提供します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 問題提起セクション -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">こんな悩みありませんか？</h2>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>時間が足りない</h3>
+                    <p>部活と勉強の両立が難しい</p>
+                </div>
+                <div class="problem-item">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>費用が心配</h3>
+                    <p>1-2年生から塾に通うのは高額</p>
+                </div>
+                <div class="problem-item">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>計画が立てられない</h3>
+                    <p>効率的な学習方法がわからない</p>
+                </div>
+                <div class="problem-item">
+                    <i class="fas fa-users"></i>
+                    <h3>環境がない</h3>
+                    <p>同じ目標を持つ仲間がいない</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- サービス概要 -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">私たちのサービス</h2>
+            <p class="section-subtitle">北大生メンターがあなたの文武両道を全力サポート</p>
+            
+            <div class="services-grid">
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>専属面談</h3>
+                    <p class="service-frequency">月2回（各60分）</p>
+                    <p class="service-description">志望部活の北大生との一対一対話。<br>2週間の学習計画作成・修正、メンタルサポート、モチベーション管理に特化。</p>
+                    <ul class="service-features">
+                        <li>部活と両立する時間戦略指導</li>
+                        <li>オンライン自習室参加日時の確定</li>
+                        <li>個別の学習計画作成</li>
+                    </ul>
+                    <a href="details.html" target="_blank" class="btn btn-secondary btn-details">詳細はこちら</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>オンライン自習室</h3>
+                    <p class="service-frequency">自由入退出</p>
+                    <p class="service-description">塾生同士が勉強する手元を見せ合い、互いに頑張る環境を構築。<br>自宅学習の集中力を高めます。</p>
+                    <a href="details.html" target="_blank" class="btn btn-secondary btn-details">詳細はこちら</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>実践型特別授業</h3>
+                    <p class="service-frequency">月1回（60分）</p>
+                    <p class="service-description">文武両道の「武」に焦点を当てた課題解決型ディスカッション。<br>部活の現状と目標から最適な練習メニューを議論。</p>
+                    <a href="details.html" target="_blank" class="btn btn-secondary btn-details">詳細はこちら</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>有益ノウハウ20</h3>
+                    <p class="service-frequency">随時更新</p>
+                    <p class="service-description">北大体育会学生の「時短・効率化」に特化したノウハウ集。<br>部活で疲れた日でもできる効率的な学習法を提供。</p>
+                    <a href="details.html" target="_blank" class="btn btn-secondary btn-details">詳細はこちら</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>参考書リサイクル</h3>
+                    <p class="service-frequency">随時</p>
+                    <p class="service-description">北大生メンターが使用した参考書を低価格または無料で提供。<br>「合格者の縁起の良い参考書」という付加価値。</p>
+                    <a href="details.html" target="_blank" class="btn btn-secondary btn-details">詳細はこちら</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プラン -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <p class="section-subtitle">あなたに合ったプランを選んでください</p>
+            
+            <div class="pricing-grid">
+                <!-- ベーシックプラン -->
+                <div class="pricing-card basic">
+                    <div class="pricing-header">
+                        <h3>ベーシックプラン</h3>
+                        <div class="price">
+                            <span class="currency">¥</span>
+                            <span class="amount">8,000</span>
+                            <span class="period">/月</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>専属面談 月1回（60分）</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>オンライン自習室 週3回まで</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>有益ノウハウ20 随時更新</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>参考書リサイクル 随時</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn-primary btn-large">申し込む</a>
+                        <p class="pricing-note">※初回相談は無料です</p>
+                    </div>
+                </div>
+
+                <!-- スタンダードプラン（おすすめ） -->
+                <div class="pricing-card standard featured">
+                    <div class="pricing-badge">おすすめ</div>
+                    <div class="pricing-header">
+                        <h3>スタンダードプラン</h3>
+                        <div class="price">
+                            <span class="currency">¥</span>
+                            <span class="amount">15,000</span>
+                            <span class="period">/月</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>専属面談 月2回（各60分）</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>オンライン自習室 自由入退出</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>実践型特別授業 月1回（60分）</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>有益ノウハウ20 随時更新</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>参考書リサイクル 随時</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn-primary btn-large">今すぐ申し込む</a>
+                        <p class="pricing-note">※初回相談は無料です</p>
+                    </div>
+                </div>
+
+                <!-- プレミアムプラン -->
+                <div class="pricing-card premium">
+                    <div class="pricing-header">
+                        <h3>プレミアムプラン</h3>
+                        <div class="price">
+                            <span class="currency">¥</span>
+                            <span class="amount">25,000</span>
+                            <span class="period">/月</span>
+                        </div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>専属面談 月4回（各60分）</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>オンライン自習室 自由入退出</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>実践型特別授業 月2回（各60分）</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>有益ノウハウ20 随時更新</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>参考書リサイクル 随時</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>24時間チャットサポート</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>個別学習計画の週次更新</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn-primary btn-large">申し込む</a>
+                        <p class="pricing-note">※初回相談は無料です</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ターゲット -->
+    <section class="target">
+        <div class="container">
+            <div class="target-header">
+                <h2 class="section-title">こんな方におすすめ</h2>
+                <p class="section-subtitle">あなたの状況に当てはまるものはありますか？</p>
+            </div>
+            
+            <div class="target-grid">
+                <div class="target-card passion">
+                    <div class="target-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>部活も勉強も頑張りたい</h3>
+                        <p>文武両道を目指す情熱的な高校生</p>
+                        <ul class="target-features">
+                            <li>部活と勉強の両立に悩んでいる</li>
+                            <li>時間管理がうまくできない</li>
+                            <li>効率的な学習方法を知りたい</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="target-card location">
+                    <div class="target-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>札幌の高校生</h3>
+                        <p>北海道大学を志望する地域の学生</p>
+                        <ul class="target-features">
+                            <li>北大を第一志望にしている</li>
+                            <li>同じ地域の先輩の話を聞きたい</li>
+                            <li>北大の部活事情を知りたい</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="target-card budget">
+                    <div class="target-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>費用を抑えたい</h3>
+                        <p>一般的な塾には通えない1-2年生</p>
+                        <ul class="target-features">
+                            <li>月額15,000円以下でサポートを受けたい</li>
+                            <li>1-2年生から本格的な受験対策を始めたい</li>
+                            <li>コストパフォーマンスの良いサービスを探している</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="target-card motivation">
+                    <div class="target-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>モチベーションを維持したい</h3>
+                        <p>継続的な学習意欲を保ちたい学生</p>
+                        <ul class="target-features">
+                            <li>一人で勉強するのが続かない</li>
+                            <li>同じ目標を持つ仲間が欲しい</li>
+                            <li>定期的なサポートが必要</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="target-card planning">
+                    <div class="target-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>学習計画を立てたい</h3>
+                        <p>効率的な学習スケジュールを作りたい</p>
+                        <ul class="target-features">
+                            <li>部活と勉強のバランスがわからない</li>
+                            <li>長期・短期の計画を立てたい</li>
+                            <li>進捗管理をサポートしてほしい</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="target-card support">
+                    <div class="target-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="target-content">
+                        <h3>メンタルサポートが欲しい</h3>
+                        <p>受験ストレスを軽減したい</p>
+                        <ul class="target-features">
+                            <li>受験への不安を解消したい</li>
+                            <li>部活と勉強のプレッシャーを和らげたい</li>
+                            <li>経験者のアドバイスが欲しい</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="target-cta">
+                <div class="cta-content">
+                    <h3>当てはまる項目はありましたか？</h3>
+                    <p>一つでも当てはまる方は、ぜひ無料相談にお申し込みください</p>
+                    <a href="#contact" class="btn btn-primary btn-large">無料相談を申し込む</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ</h2>
+            <p class="section-subtitle">まずは無料相談から始めませんか？</p>
+            
+            <!-- お問い合わせフォーム（上段） -->
+            <div class="contact-form-section">
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">お名前</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="school">学校名</label>
+                            <input type="text" id="school" name="school" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="club">部活</label>
+                            <input type="text" id="club" name="club" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="grade">学年</label>
+                            <select id="grade" name="grade" required>
+                                <option value="">選択してください</option>
+                                <option value="1">高校1年生</option>
+                                <option value="2">高校2年生</option>
+                                <option value="3">高校3年生</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="plan">ご希望のプラン</label>
+                            <select id="plan" name="plan">
+                                <option value="">選択してください</option>
+                                <option value="basic">ベーシックプラン（¥8,000/月）</option>
+                                <option value="standard">スタンダードプラン（¥15,000/月）</option>
+                                <option value="premium">プレミアムプラン（¥25,000/月）</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ご質問・ご要望</label>
+                        <textarea id="message" name="message" rows="5" placeholder="お気軽にご質問ください"></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary btn-large">無料相談を申し込む</button>
+                        <p class="form-note">※初回相談は無料です。お気軽にお申し込みください。</p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- お問い合わせ情報（下段） -->
+            <div class="contact-info-section">
+                <h3 class="contact-info-title">その他のお問い合わせ方法</h3>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-method-icon gmail-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h4>メール</h4>
+                            <p>info@bukatsu-support.com</p>
+                            <span class="contact-method-note">24時間以内に返信いたします</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon phone-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h4>電話</h4>
+                            <p>011-xxx-xxxx</p>
+                            <span class="contact-method-note">平日 10:00-18:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon line-icon">
+                            <i class="fab fa-line"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h4>LINE</h4>
+                            <p>@bukatsu-support</p>
+                            <span class="contact-method-note">お気軽にご相談ください</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-method-icon instagram-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h4>Instagram</h4>
+                            <p>@bukatsu-support</p>
+                            <span class="contact-method-note">DMでもご相談可能です</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Self-discipline</h3>
+                    <p>北大生メンターがあなたの文武両道を全力でサポートします。</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LINE"><i class="fab fa-line"></i></a>
+                        <a href="#contact" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="#services">専属面談</a></li>
+                        <li><a href="#services">オンライン自習室</a></li>
+                        <li><a href="#services">実践型特別授業</a></li>
+                        <li><a href="#pricing">料金プラン</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>サポート</h4>
+                    <ul>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                        <li><a href="#contact">無料相談</a></li>
+                        <li><a href="#">よくある質問</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Self-discipline. All rights reserved.</p>
+                <button class="theme-toggle-btn" aria-label="Toggle theme">
+                    <i class="fas fa-sun icon-sun"></i>
+                    <i class="fas fa-moon icon-moon"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

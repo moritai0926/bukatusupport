@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週間予定表 - 無料体験</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <h1>週間予定表 - 無料体験</h1>
+        <a href="../index.html" class="back-to-site">メインサイトに戻る</a>
+    </header>
+
+    <main class="app-main">
+        <div id="timetable-container" class="timetable-container">
+            <!-- タイムテーブルのヘッダー（曜日）がここに生成されます -->
+            <div class="timetable-header"></div>
+            <!-- タイムテーブルの本体（時間軸とセル）がここに生成されます -->
+            <div class="timetable-body"></div>
+        </div>
+    </main>
+
+    <!-- 予定追加モーダル -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>予定を追加</h2>
+            <input type="text" id="event-title" placeholder="予定のタイトルを入力">
+            <button id="save-event">保存</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
