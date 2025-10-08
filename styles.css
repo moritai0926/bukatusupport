@@ -26,10 +26,6 @@ body {
 }
 
 body:not(.light-mode) {
-    background-image: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.8)), url('https://i.pinimg.com/736x/85/1e/60/851e60eba7289a6923048fa81d6b2fc9.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 .container {
@@ -162,13 +158,14 @@ body:not(.light-mode) {
 
 /* --- ヒーローセクション --- */
 .hero {
-    background: linear-gradient(rgba(26, 32, 44, 0.8), rgba(26, 32, 44, 0.9));
     min-height: 100vh;
     display: flex;
     align-items: center;
     color: white;
     position: relative;
     overflow: hidden;
+    background-position: center;
+    background-size: cover;
 }
 
 #particles-js { /* 表示を戻す */
@@ -695,10 +692,13 @@ body.light-mode .navbar {
 body.light-mode .nav-logo h2, body.light-mode .nav-menu a, body.light-mode .hamburger span { color: var(--text-primary); }
 body.light-mode .nav-cta .btn-primary { background: #333; color: #fff; }
 
+body:not(.light-mode) .hero {
+    background-image: linear-gradient(rgba(26, 32, 44, 0.8), rgba(26, 32, 44, 0.9)), url('https://i.pinimg.com/736x/85/1e/60/851e60eba7289a6923048fa81d6b2fc9.jpg');
+    background-attachment: fixed;
+}
+
 body.light-mode .hero {
-    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-    background-size: cover;
-    background-position: center;
+    background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
     color: var(--text-primary);
 }
 
@@ -990,14 +990,9 @@ body.light-mode .passion-content p {
 }
 /* Tablet & Mobile Background Fix */
 @media (max-width: 1024px) {
-    body:not(.light-mode) {
-        background-attachment: scroll; /* 'fixed'を解除してモバイルでのズーム問題を回避 */
-        background-size: contain; /* モバイルでは contain に切り替え */
-        background-repeat: no-repeat; /* contain を使う際は no-repeat を推奨 */
-    }
-
-    body.light-mode .hero {
-        background-size: contain; /* モバイルでは contain に切り替え */
-        background-repeat: no-repeat; /* contain を使う際は no-repeat を推奨 */
+    .hero {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
     }
 }
