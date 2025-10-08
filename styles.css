@@ -27,9 +27,10 @@ body {
 
 body:not(.light-mode) {
     background-image: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.8)), url('https://i.pinimg.com/736x/85/1e/60/851e60eba7289a6923048fa81d6b2fc9.jpg');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .container {
@@ -697,19 +698,10 @@ body.light-mode .nav-cta .btn-primary { background: #333; color: #fff; }
 
 body.light-mode .hero {
     background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-    background-size: 100%;
+    background-size: contain;
     background-position: center;
     color: var(--text-primary);
-    animation: kenburns 20s ease-out infinite;
-}
-
-@keyframes kenburns {
-    0% {
-        background-size: 100%;
-    }
-    100% {
-        background-size: 110%;
-    }
+    background-repeat: no-repeat;
 }
 
 body.light-mode .hero-title { color: #222; }
@@ -996,17 +988,5 @@ body.light-mode .passion-content p {
 
     .passion-content p {
         font-size: 1rem;
-    }
-}
-
-/* iPad & Tablet Background Fix */
-@media (max-width: 1024px) {
-    body:not(.light-mode) {
-        background-attachment: scroll; /* 'fixed'を解除 */
-    }
-
-    body.light-mode .hero {
-        background-size: cover; /* '100%'から'cover'に変更してアスペクト比を維持 */
-        animation: none; /* ズームアニメーションを無効化 */
     }
 }
