@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会員専用ページ - Self-discipline</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Self-discipline</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> ダッシュボード</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> プロフィール</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> 予約</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> 設定</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>ようこそ、森さん！</h1>
+                <p>今日も目標に向かって頑張りましょう。</p>
+            </header>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>次の面談</h3>
+                    <p><strong>日時:</strong> 2025年10月15日 19:00〜</p>
+                    <p><strong>担当:</strong> 佐藤メンター</p>
+                    <a href="#" class="btn-card">詳細を見る</a>
+                </div>
+                <div class="card">
+                    <h3>今週の学習時間</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%;">60%</div>
+                    </div>
+                    <p>目標まであと <strong>8</strong> 時間</p>
+                </div>
+                <div class="card">
+                    <h3>新しいお知らせ</h3>
+                    <p>新しい「有益ノウハウ」が追加されました。</p>
+                    <a href="#" class="btn-card">確認する</a>
+                </div>
+                <div class="card">
+                    <h3>オンライン自習室</h3>
+                    <p>現在 <strong>5</strong> 人が学習中です。</p>
+                    <a href="#" class="btn-card">参加する</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
