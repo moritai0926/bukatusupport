@@ -1,0 +1,128 @@
+:root {
+    --primary-accent: #ffd700; /* ゴールド */
+    --secondary-accent: #4299e1; /* 明るい青 */
+    --background-primary: #1A202C; /* 本体背景 */
+    --background-secondary: #2D3748; /* カード背景 */
+    --border-color: #4A5568;
+    --text-primary: #E2E8F0; /* 明るいグレー */
+    --text-secondary: #A0AEC0; /* やや暗いグレー */
+    --text-headings: #FFFFFF; /* 白 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(26, 32, 44, 0.8), rgba(26, 32, 44, 0.9)), url('https://i.pinimg.com/736x/85/1e/60/851e60eba7289a6923048fa81d6b2fc9.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.signup-container {
+    padding: 20px;
+}
+
+.signup-box {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--background-secondary);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.signup-header h2 {
+    font-size: 2rem;
+    color: var(--text-headings);
+    margin-bottom: 10px;
+}
+
+.signup-header p {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.signup-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.form-group label i {
+    margin-right: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--background-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--secondary-accent);
+    background-color: var(--background-secondary);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+.btn-signup {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px; /* Add some space before the button */
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, var(--primary-accent), #ffc300);
+    color: #1A202C;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-signup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.signup-footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.signup-footer a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-footer a:hover {
+    text-decoration: underline;
+}
