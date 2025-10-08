@@ -998,3 +998,15 @@ body.light-mode .passion-content p {
         font-size: 1rem;
     }
 }
+
+/* iPad & Tablet Background Fix */
+@media (max-width: 1024px) {
+    body:not(.light-mode) {
+        background-attachment: scroll; /* 'fixed'を解除 */
+    }
+
+    body.light-mode .hero {
+        background-size: cover; /* '100%'から'cover'に変更してアスペクト比を維持 */
+        animation: none; /* ズームアニメーションを無効化 */
+    }
+}
