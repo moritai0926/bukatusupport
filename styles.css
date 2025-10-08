@@ -911,7 +911,7 @@ body.light-mode #particles-js { display: none; } /* ライトモードでは非�
 
 /* --- Light Mode Passion Section --- */
 body.light-mode #passion {
-    background-color: var(--background-primary);
+    background-color: transparent;
 }
 
 body.light-mode #fire-canvas {
