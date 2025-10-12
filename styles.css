@@ -137,6 +137,10 @@ body:not(.light-mode) {
 .nav-cta {
     display: flex;
 }
+
+.nav-login-mobile {
+    display: none; /* PCではモバイル用のログインボタンを非表示 */
+}
 .nav-cta .btn-primary { background: var(--primary-accent); color: #1A202C; box-shadow: none; }
 
 /* ハンバーガーアイコン */
@@ -821,6 +825,18 @@ body.light-mode #particles-js { display: none; } /* ライトモードでは非�
 
     .nav-menu a:hover::after {
         width: 60%; /* ホバー時の幅 */
+    }
+
+    .nav-login-mobile {
+        display: block; /* モバイルメニュー内で表示 */
+        padding: 10px 20px;
+    }
+
+    .nav-login-mobile .btn-primary {
+        width: 100%;
+        background: var(--primary-accent);
+        color: #1A202C;
+        justify-content: center;
     }
 
     .hero-title {

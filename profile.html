@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール - Self-discipline</title>
+    <link rel="stylesheet" href="dashboard.css"> <!-- ベーススタイルを継承 -->
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- サイドバー (共通) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Self-discipline</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> ダッシュボード</a></li>
+                    <li class="active"><a href="profile.html"><i class="fas fa-user"></i> プロフィール</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> 予約</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> 設定</a></li>
+                    <li><a href="index.html" id="logout-link"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <!-- プロフィールヘッダー -->
+            <div class="profile-header">
+                <div class="cover-image"></div>
+                <div class="profile-info-header">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="プロフィール画像" class="profile-avatar">
+                    <div class="profile-name">
+                        <h1 id="profile-username">森 雄大</h1>
+                        <p>@mori-yudai</p>
+                    </div>
+                    <button class="btn-edit-profile"><i class="fas fa-pencil-alt"></i> プロフィールを編集</button>
+                </div>
+            </div>
+
+            <!-- プロフィールボディ (2カラム) -->
+            <div class="profile-body">
+                <!-- 左カラム: 基本情報 -->
+                <aside class="profile-sidebar">
+                    <div class="card">
+                        <h3>基本情報</h3>
+                        <ul class="info-list">
+                            <li><i class="fas fa-school"></i> 〇〇高校 2年生</li>
+                            <li><i class="fas fa-flag"></i> サッカー部</li>
+                            <li><i class="fas fa-envelope"></i> y.mori@example.com</li>
+                            <li><i class="fas fa-calendar-check"></i> 登録日: 2024年4月1日</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>スキル</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">数学</span>
+                            <span class="skill-tag">物理</span>
+                            <span class="skill-tag">英語</span>
+                            <span class="skill-tag">リーダーシップ</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- 右カラム: 詳細情報 -->
+                <div class="profile-main-content">
+                    <div class="card chart-container">
+                        <h3>模試の成績</h3>
+                        <canvas id="mockExamChart"></canvas>
+                    </div>
+                    <div class="card todo-list">
+                        <h3>2週間のTODOリスト</h3>
+                        <ul>
+                            <li><input type="checkbox" id="todo1" name="todo1"><label for="todo1">数学の課題を終わらせる</label></li>
+                            <li><input type="checkbox" id="todo2" name="todo2"><label for="todo2">英語の単語を100個覚える</label></li>
+                            <li><input type="checkbox" id="todo3" name="todo3"><label for="todo3">物理の実験レポートを作成する</label></li>
+                            <li><input type="checkbox" id="todo4" name="todo4"><label for="todo4">歴史の教科書を読む</label></li>
+                        </ul>
+                    </div>
+                    <div class="card study-time">
+                        <h3>勉強時間</h3>
+                        <p>今日の勉強時間: <strong>2</strong> 時間</p>
+                        <p>2週間の合計勉強時間: <strong>30</strong> 時間</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="common.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

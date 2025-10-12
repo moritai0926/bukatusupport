@@ -1,0 +1,170 @@
+/* プロフィールページのメインコンテンツエリアの余白を調整 */
+.main-content {
+    padding: 0; /* dashboard.cssのpaddingを上書き */
+}
+
+/* --- プロフィールヘッダー --- */
+.profile-header {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.cover-image {
+    width: 100%;
+    height: 250px;
+    background-image: linear-gradient(rgba(26, 32, 44, 0.6), rgba(26, 32, 44, 0.8)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+}
+
+.profile-info-header {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 40px 20px;
+    margin-top: -80px; /* カバー画像に重なるように調整 */
+}
+
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 5px solid var(--background-primary);
+    background-color: var(--background-secondary);
+    object-fit: cover;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.profile-name {
+    margin-left: 25px;
+    margin-bottom: 10px; /* ボタンとの位置調整 */
+}
+
+.profile-name h1 {
+    font-size: 2.2rem;
+    color: var(--text-headings);
+    margin: 0;
+}
+
+.profile-name p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.btn-edit-profile {
+    margin-left: auto; /* 右端に配置 */
+    margin-bottom: 15px; /* 位置調整 */
+    padding: 10px 20px;
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit-profile:hover {
+    background-color: var(--secondary-accent);
+    color: white;
+    border-color: var(--secondary-accent);
+}
+
+/* --- プロフィールボディ (2カラム) --- */
+.profile-body {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* 左カラムの幅を固定 */
+    gap: 30px;
+    padding: 20px 40px; /* 全体の余白 */
+}
+
+.profile-sidebar .card, .profile-main-content .card {
+    margin-bottom: 30px;
+}
+
+/* --- 左カラム --- */
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+.info-list li i {
+    width: 20px;
+    text-align: center;
+    margin-right: 15px;
+    color: var(--text-primary);
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background-color: var(--background-primary);
+    color: var(--text-secondary);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+/* --- 右カラム --- */
+.chart-container {
+    width: 100%;
+}
+
+.todo-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.todo-list input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.study-time p {
+    margin: 5px 0;
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 1200px) {
+    .profile-body {
+        grid-template-columns: 1fr; /* 1カラムに変更 */
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-info-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: -100px;
+    }
+
+    .profile-name {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .btn-edit-profile {
+        margin: 20px auto 0;
+    }
+
+    .profile-body {
+        padding: 20px;
+    }
+}

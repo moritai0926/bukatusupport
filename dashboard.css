@@ -8,170 +8,114 @@
     --text-primary: #E2E8F0; /* 明るいグレー */
     --text-secondary: #A0AEC0; /* やや暗いグレー */
     --text-headings: #FFFFFF; /* 白 */
+
+    /* Tag Colors */
+    --tag-study: #4299e1;
+    --tag-school: #48bb78;
+    --tag-club: #ed8936;
+    --tag-todo: #9F7AEA; /* ToDo用の新しい色 */
+    --tag-meal: #d53f8c;
+    --tag-sleep: #805ad5;
+    --tag-travel: #38b2ac;
+    --tag-other: #718096;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background-color: var(--background-primary);
-    color: var(--text-primary);
-}
+body { font-family: 'Noto Sans JP', sans-serif; background-color: var(--background-primary); color: var(--text-primary); }
 
-.dashboard-wrapper {
-    display: flex;
-    min-height: 100vh;
-}
+.dashboard-wrapper { display: flex; min-height: 100vh; }
 
-/* --- サイドバー --- */
-.sidebar {
-    width: 260px;
-    background-color: var(--background-tertiary);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid var(--border-color);
-}
+/* --- Sidebar & Main Content (existing styles) --- */
+.sidebar { width: 260px; background-color: var(--background-tertiary); padding: 20px; display: flex; flex-direction: column; border-right: 1px solid var(--border-color); }
+.sidebar-header h2 { font-size: 1.8rem; color: var(--text-headings); text-align: center; padding: 20px 0; }
+.sidebar-nav { margin-top: 30px; }
+.sidebar-nav ul { list-style: none; }
+.sidebar-nav li a { display: block; padding: 15px 20px; color: var(--text-secondary); text-decoration: none; border-radius: 8px; margin-bottom: 10px; transition: all 0.3s ease; }
+.sidebar-nav li a i { margin-right: 15px; width: 20px; text-align: center; }
+.sidebar-nav li a:hover { background-color: var(--background-secondary); color: var(--text-primary); }
+.sidebar-nav li.active a { background-color: var(--secondary-accent); color: white; box-shadow: 0 4px 15px rgba(66, 153, 225, 0.2); }
+.main-content { flex: 1; padding: 40px; overflow-y: auto; }
+.main-header h1 { font-size: 2.5rem; color: var(--text-headings); margin-bottom: 10px; }
+.main-header p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 40px; }
 
-.sidebar-header h2 {
-    font-size: 1.8rem;
-    color: var(--text-headings);
-    text-align: center;
-    padding: 20px 0;
-}
+/* --- Dashboard Layout (existing styles) --- */
+.dashboard-main-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; margin-bottom: 40px; }
+.dashboard-left-column, .dashboard-right-column { display: flex; flex-direction: column; gap: 30px; }
 
-.sidebar-nav {
-    margin-top: 30px;
-}
+/* --- Card Styles (existing & modified) --- */
+.card { background-color: var(--background-secondary); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color); box-shadow: 0 5px 20px rgba(0,0,0,0.2); transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+.card-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.card h3 { font-size: 1.5rem; color: var(--text-headings); margin-bottom: 0; }
+.btn-icon { background: none; border: none; color: var(--text-secondary); font-size: 1.2rem; cursor: pointer; padding: 5px; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+.btn-icon:hover { background-color: var(--background-primary); color: var(--primary-accent); }
 
-.sidebar-nav ul {
-    list-style: none;
-}
+/* --- Quote & Chart (existing styles & new) --- */
+.achievement-chart .chart-container { position: relative; width: 100%; max-width: 300px; margin: 0 auto; }
+#no-todo-message { color: var(--text-secondary); text-align: center; padding: 40px 20px; }
+.quote-of-the-day .quote-text { position: relative; font-size: 1.1rem; font-style: italic; color: var(--text-primary); line-height: 1.6; margin: 20px 0 15px; padding: 0 20px; }
+.quote-of-the-day .quote-text::before, .quote-of-the-day .quote-text::after { font-family: 'Georgia', serif; font-size: 4rem; color: var(--primary-accent); opacity: 0.3; position: absolute; }
+.quote-of-the-day .quote-text::before { content: '“'; top: -10px; left: -10px; }
+.quote-of-the-day .quote-text::after { content: '”'; bottom: -30px; right: 0; }
+.quote-of-the-day .quote-author { text-align: right; color: var(--text-secondary); font-weight: 600; }
 
-.sidebar-nav li a {
-    display: block;
-    padding: 15px 20px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-}
+/* --- Daily Schedule Styles --- */
+.daily-schedule .schedule-list { list-style: none; padding: 0; max-height: 500px; overflow-y: auto; padding-right: 10px; }
+.schedule-list li { display: flex; align-items: center; padding: 8px 5px; border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; border-left: 5px solid transparent; }
+.schedule-list li:not(.has-no-title):hover { background-color: rgba(255,255,255,0.03); cursor: pointer; }
+.schedule-list li:last-child { border-bottom: none; }
+.schedule-list .time { font-weight: 600; color: var(--text-secondary); width: 60px; flex-shrink: 0; }
+.schedule-list .details { display: flex; flex-direction: column; flex-grow: 1; overflow: hidden; padding: 0 10px; }
+.schedule-list .title { flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.schedule-list .memo { font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.schedule-list .title.placeholder { color: var(--text-secondary); opacity: 0.6; }
+.task-checkbox { margin-right: 10px; width: 18px; height: 18px; cursor: pointer; }
+li.completed .title, li.completed .memo { text-decoration: line-through; opacity: 0.6; }
 
-.sidebar-nav li a i {
-    margin-right: 15px;
-    width: 20px; /* アイコンの幅を固定 */
-    text-align: center;
-}
+/* Schedule Tag Colors */
+.schedule-list li.tag-study { border-left-color: var(--tag-study); }
+.schedule-list li.tag-school { border-left-color: var(--tag-school); }
+.schedule-list li.tag-club { border-left-color: var(--tag-club); }
+.schedule-list li.tag-todo { border-left-color: var(--tag-todo); }
+.schedule-list li.tag-meal { border-left-color: var(--tag-meal); }
+.schedule-list li.tag-sleep { border-left-color: var(--tag-sleep); }
+.schedule-list li.tag-travel { border-left-color: var(--tag-travel); }
+.schedule-list li.tag-other { border-left-color: var(--tag-other); }
 
-.sidebar-nav li a:hover {
-    background-color: var(--background-secondary);
-    color: var(--text-primary);
-}
+/* --- Modal Styles --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background-color: var(--background-secondary); padding: 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); width: 90%; max-width: 500px; border: 1px solid var(--border-color); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.modal-header h3 { font-size: 1.8rem; color: var(--text-headings); }
+.modal-body .form-group { margin-bottom: 20px; }
+.form-group-inline { display: flex; gap: 20px; margin-bottom: 20px; }
+.form-group-inline .form-group { flex: 1; margin-bottom: 0; }
+.modal-body label { display: block; margin-bottom: 10px; font-weight: 600; }
+.modal-body input, .modal-body textarea, .modal-body select { width: 100%; padding: 12px; background-color: var(--background-primary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 8px; font-size: 1rem; }
+.modal-body input:focus, .modal-body textarea:focus, .modal-body select:focus { outline: none; border-color: var(--secondary-accent); }
+.tag-selector { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag-option { background: none; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
+.tag-option.selected { color: white; border-width: 2px; }
+.tag-option[data-tag="study"].selected { border-color: var(--tag-study); background-color: rgba(66, 153, 225, 0.1); }
+.tag-option[data-tag="school"].selected { border-color: var(--tag-school); background-color: rgba(72, 187, 120, 0.1); }
+.tag-option[data-tag="club"].selected { border-color: var(--tag-club); background-color: rgba(237, 137, 54, 0.1); }
+.tag-option[data-tag="todo"].selected { border-color: var(--tag-todo); background-color: rgba(159, 122, 234, 0.1); }
+.tag-option[data-tag="meal"].selected { border-color: var(--tag-meal); background-color: rgba(213, 63, 140, 0.1); }
+.tag-option[data-tag="sleep"].selected { border-color: var(--tag-sleep); background-color: rgba(128, 90, 213, 0.1); }
+.tag-option[data-tag="travel"].selected { border-color: var(--tag-travel); background-color: rgba(56, 178, 172, 0.1); }
+.tag-option[data-tag="other"].selected { border-color: var(--tag-other); background-color: rgba(113, 128, 147, 0.1); }
+.modal-footer { display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px; }
+.btn { padding: 10px 25px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+.btn-primary { background-color: var(--secondary-accent); color: white; }
+.btn-primary:hover { background-color: #3182ce; }
+.btn-secondary { background-color: var(--border-color); color: var(--text-primary); }
+.btn-secondary:hover { background-color: #718096; }
 
-.sidebar-nav li.active a {
-    background-color: var(--secondary-accent);
-    color: white;
-    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.2);
-}
-
-/* --- メインコンテンツ --- */
-.main-content {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-}
-
-.main-header h1 {
-    font-size: 2.5rem;
-    color: var(--text-headings);
-    margin-bottom: 10px;
-}
-
-.main-header p {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.card {
-    background-color: var(--background-secondary);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
-
-.card h3 {
-    font-size: 1.5rem;
-    color: var(--text-headings);
-    margin-bottom: 20px;
-}
-
-.card p {
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-}
-
-.btn-card {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: var(--secondary-accent);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-card:hover {
-    background-color: #3182ce; /* 少し濃い青 */
-}
-
-.progress-bar {
-    width: 100%;
-    height: 20px;
-    background-color: var(--background-primary);
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 15px 0;
-}
-
-.progress {
-    height: 100%;
-    background-color: var(--primary-accent);
-    color: #1A202C;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-    .dashboard-wrapper {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .main-content {
-        padding: 20px;
-    }
-}
+/* --- Custom Scrollbar & Responsive (existing styles) --- */
+.daily-schedule .schedule-list::-webkit-scrollbar { width: 8px; }
+.daily-schedule .schedule-list::-webkit-scrollbar-track { background: var(--background-primary); border-radius: 4px; }
+.daily-schedule .schedule-list::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 4px; }
+.daily-schedule .schedule-list::-webkit-scrollbar-thumb:hover { background-color: var(--primary-accent); }
+@media (max-width: 1200px) { .dashboard-main-layout { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .dashboard-wrapper { flex-direction: column; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); } .main-content { padding: 20px; } }
