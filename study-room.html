@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自習室カレンダー - Self-discipline</title>
+    <link rel="stylesheet" href="dashboard.css"> <!-- ベーススタイルを継承 -->
+    <link rel="stylesheet" href="study-room.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- サイドバー (共通) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Self-discipline</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> ダッシュボード</a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i> プロフィール</a></li>
+                    <li><a href="details.html"><i class="fas fa-calendar-alt"></i> 予約</a></li>
+                    <li class="active"><a href="study-room.html"><i class="fas fa-book-reader"></i> 自習室</a></li>
+                    <li><a href="index.html" id="logout-link"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>自習室カレンダー</h1>
+                <p>2週間の参加予定を登録しましょう。1時間単位で予約できます。</p>
+            </header>
+
+            <div class="study-room-container card">
+                <div id="week-navigation">
+                    <button id="prev-week-btn" class="btn"><i class="fas fa-chevron-left"></i> 前の週</button>
+                    <h3 id="week-range"></h3>
+                    <button id="next-week-btn" class="btn">次の週 <i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div id="timetable-container"></div>
+            </div>
+        </main>
+    </div>
+    <script src="common.js"></script>
+    <script src="study-room.js"></script>
+</body>
+</html>

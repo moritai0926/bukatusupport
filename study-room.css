@@ -1,0 +1,85 @@
+/* --- Study Room Specific Styles --- */
+.study-room-container {
+    padding: 30px;
+}
+
+#week-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#week-navigation h3 {
+    color: var(--text-headings);
+    font-size: 1.6rem;
+}
+
+#timetable-container {
+    display: grid;
+    /* 1fr for time column, 14fr for 14 days */
+    grid-template-columns: 60px repeat(14, 1fr);
+    gap: 2px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.grid-cell {
+    background-color: var(--background-secondary);
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-cell {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    min-height: 50px;
+    flex-direction: column;
+}
+
+.header-cell .day-of-week {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.time-cell {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    min-height: 40px;
+}
+
+.slot-cell {
+    min-height: 40px;
+    cursor: pointer;
+    background-color: var(--background-primary);
+    transition: background-color 0.2s ease;
+}
+
+.slot-cell:hover {
+    background-color: var(--background-tertiary);
+}
+
+.slot-cell.reserved {
+    background-color: var(--secondary-accent);
+}
+
+.slot-cell.reserved:hover {
+    background-color: #3182ce; /* Darker shade of secondary-accent */
+}
+
+/* Today's column highlight */
+.header-cell.today {
+    background-color: rgba(255, 215, 0, 0.1);
+    color: var(--primary-accent);
+}
+
+.header-cell.today .day-of-week {
+    color: var(--primary-accent);
+}
