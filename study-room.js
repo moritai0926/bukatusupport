@@ -30,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const today = new Date();
         const todayStr = formatDate(today);
 
+        const reservedSlotsCountElement = document.getElementById('reserved-slots-count');
+        const reservedHoursTotalElement = document.getElementById('reserved-hours-total');
+        let reservedSlotsCount = 0;
+        let reservedHoursTotal = 0;
+
         // Set week range text
         const weekStart = new Date(currentDate);
         const weekEnd = new Date(currentDate);
@@ -78,10 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (reservations[slotId]) {
                     slotCell.classList.add('reserved');
+                    reservedSlotsCount++;
+                    reservedHoursTotal++;
                 }
                 timetableContainer.appendChild(slotCell);
             }
         }
+
+        if (reservedSlotsCountElement) reservedSlotsCountElement.textContent = reservedSlotsCount;
+        if (reservedHoursTotalElement) reservedHoursTotalElement.textContent = reservedHoursTotal;
     };
 
     const toggleReservation = (e) => {
@@ -90,12 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const slotId = e.target.dataset.slotId;
         if (reservations[slotId]) {
             delete reservations[slotId];
-            e.target.classList.remove('reserved');
         } else {
             reservations[slotId] = true;
-            e.target.classList.add('reserved');
         }
         saveReservations();
+        renderTimetable(); // Re-render to update counts
     };
 
     // --- Event Listeners ---

@@ -15,10 +15,23 @@
     font-size: 1.6rem;
 }
 
+#reservation-summary {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+#reservation-summary span {
+    font-weight: 600;
+    color: var(--primary-accent);
+    font-size: 1.2rem;
+}
+
 #timetable-container {
     display: grid;
     /* 1fr for time column, 14fr for 14 days */
-    grid-template-columns: 60px repeat(14, 1fr);
+    grid-template-columns: 50px repeat(14, 1fr); /* Time column narrower */
     gap: 2px;
     background-color: var(--border-color);
     border: 1px solid var(--border-color);
@@ -28,7 +41,7 @@
 
 .grid-cell {
     background-color: var(--background-secondary);
-    padding: 8px;
+    padding: 6px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -37,26 +50,26 @@
 
 .header-cell {
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-primary);
-    min-height: 50px;
+    min-height: 40px;
     flex-direction: column;
 }
 
 .header-cell .day-of-week {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-secondary);
 }
 
 .time-cell {
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    min-height: 40px;
+    min-height: 30px;
 }
 
 .slot-cell {
-    min-height: 40px;
+    min-height: 30px;
     cursor: pointer;
     background-color: var(--background-primary);
     transition: background-color 0.2s ease;
