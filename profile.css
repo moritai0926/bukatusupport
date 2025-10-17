@@ -72,9 +72,7 @@
 
 /* --- プロフィールボディ (2カラム) --- */
 .profile-body {
-    display: grid;
-    grid-template-columns: 300px 1fr; /* 左カラムの幅を固定 */
-    gap: 30px;
+    display: block;
     padding: 20px 40px; /* 全体の余白 */
 }
 
