@@ -223,3 +223,189 @@
 .meeting-minutes .view-all-link:hover {
     text-decoration: underline;
 }
+
+/* --- 2-Week Plan --- */
+#plan-card {
+    position: relative;
+}
+
+.btn-edit-plan {
+    padding: 8px 16px;
+    background-color: var(--background-primary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit-plan:hover,
+.btn-edit-plan.active {
+    background-color: var(--secondary-accent);
+    color: white;
+    border-color: var(--secondary-accent);
+}
+
+#plan-grid-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    padding-bottom: 15px; /* For scrollbar */
+}
+
+#plan-grid {
+    display: grid;
+    grid-template-columns: 50px repeat(14, 1fr); /* Time labels + 14 days */
+    gap: 2px;
+    min-width: 1200px; /* Ensure it's wide enough */
+}
+
+.plan-header, .plan-time-label, .plan-cell {
+    padding: 8px;
+    text-align: center;
+    background-color: var(--background-primary);
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.plan-header {
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.plan-time-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    position: sticky;
+    left: 0;
+    z-index: 5;
+}
+
+.plan-cell {
+    min-height: 40px;
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.plan-cell.editable:hover {
+    background-color: var(--secondary-accent-hover);
+    cursor: pointer;
+}
+
+.plan-cell .task-title {
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    word-break: break-all;
+}
+
+/* Task Tag Colors for Plan */
+.plan-cell[data-tag="study"] { background-color: rgba(66, 153, 225, 0.3); }
+.plan-cell[data-tag="school"] { background-color: rgba(72, 187, 120, 0.3); }
+.plan-cell[data-tag="club"] { background-color: rgba(237, 137, 54, 0.3); }
+.plan-cell[data-tag="meal"] { background-color: rgba(213, 63, 140, 0.3); }
+.plan-cell[data-tag="sleep"] { background-color: rgba(128, 90, 213, 0.3); }
+.plan-cell[data-tag="travel"] { background-color: rgba(56, 178, 172, 0.3); }
+.plan-cell[data-tag="other"] { background-color: rgba(113, 128, 150, 0.3); }
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--background-secondary);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid var(--border-color);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 1.6rem;
+    color: var(--text-headings);
+}
+
+.modal-body .form-group {
+    margin-bottom: 20px;
+}
+
+.modal-body label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-body input[type="text"], .modal-body textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--background-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.tag-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-option {
+    background: var(--background-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.tag-option:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+.tag-option.selected {
+    color: white;
+    border-width: 2px;
+}
+.tag-option[data-tag="study"].selected { border-color: var(--tag-study); }
+.tag-option[data-tag="school"].selected { border-color: var(--tag-school); }
+.tag-option[data-tag="club"].selected { border-color: var(--tag-club); }
+.tag-option[data-tag="meal"].selected { border-color: var(--tag-meal); }
+.tag-option[data-tag="sleep"].selected { border-color: var(--tag-sleep); }
+.tag-option[data-tag="travel"].selected { border-color: var(--tag-travel); }
+.tag-option[data-tag="other"].selected { border-color: var(--tag-other); }
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
