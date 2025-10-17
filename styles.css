@@ -1077,11 +1077,17 @@ body.light-mode .passion-content p {
 }
 
 .philosophy-text {
-    font-size: 1.3rem; /* Adjusted font size */
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.3rem;
     font-weight: 500;
     line-height: 1.9;
-    color: var(--primary-accent); /* Single yellow color */
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Keep a subtle shadow for readability */
+    color: var(--text-primary);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.philosophy-text .highlight {
+    color: var(--primary-accent);
+    font-weight: 700;
 }
 
 .value-section {
