@@ -28,7 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Data Persistence ---
         const loadScheduleData = () => {
             const savedData = localStorage.getItem('scheduleData');
-            scheduleData = savedData ? JSON.parse(savedData) : {};
+            const parsedData = savedData ? JSON.parse(savedData) : {};
+            scheduleData = {}; // scheduleDataを初期化
+
+            for (const time in parsedData) {
+                let tasks = parsedData[time];
+                if (!Array.isArray(tasks)) {
+                    // 古い形式のデータ（オブジェクト）の場合、配列に変換
+                    tasks = [tasks];
+                }
+                // 各タスクにidを付与
+                scheduleData[time] = tasks.map(task => {
+                    if (!task.id) {
+                        task.id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                    }
+                    return task;
+                });
+            }
         };
         const saveScheduleData = () => {
             localStorage.setItem('scheduleData', JSON.stringify(scheduleData));
@@ -94,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const advisorComment = document.getElementById('advisor-comment');
             const allTasks = Object.values(scheduleData);
             const todoTasks = allTasks.filter(item => item.isTodo);
-            const uniqueTodoTasks = [...new Map(todoTasks.map(item => [item.title, item])).values()];
+            const uniqueTodoTasks = [...new Map(todoTasks.map(item => [item.id, item])).values()]; // item.idをキーに
             const completedTodoTasks = uniqueTodoTasks.filter(item => item.completed);
 
             // This part is for the chart itself
@@ -191,18 +207,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         todoListElement.innerHTML = ''; // Clear existing list
             
                         const allTasks = Object.values(scheduleData);
-                        const uniqueTodoTasks = [...new Map(allTasks.filter(item => item.isTodo).map(item => [item.title, item])).values()];
+                        const todoItemsToDisplay = [...new Map(allTasks.filter(item => item.isTodo).map(item => [item.id, item])).values()];
             
                         const noTodoMessage = document.getElementById('no-todo-message');
             
-                        if (uniqueTodoTasks.length === 0) {
+                        if (todoItemsToDisplay.length === 0) {
                             if (noTodoMessage) noTodoMessage.style.display = 'block';
                             return;
                         } else {
                             if (noTodoMessage) noTodoMessage.style.display = 'none';
                         }
             
-                                    uniqueTodoTasks.forEach(item => {
+                                    todoItemsToDisplay.forEach(item => {
                                         const li = document.createElement('li');
                                         li.classList.add('todo-item');
                                         if (item.completed) {
@@ -217,6 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         checkbox.checked = item.completed || false;
                                         checkbox.dataset.title = item.title; // Use title to identify for completion
                                         checkbox.dataset.tag = item.tag; // Use tag to identify for completion
+                                        checkbox.dataset.memo = item.memo; // Use memo to identify for completion
+                                        checkbox.dataset.id = item.id; // Use id to identify for completion
                                         checkboxWrapper.appendChild(checkbox);
                         
                                         const detailsDiv = document.createElement('div');
@@ -239,6 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                         deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
                                         deleteBtn.dataset.title = item.title; // Use title to identify for deletion
                                         deleteBtn.dataset.tag = item.tag; // Use tag to identify for deletion
+                                        deleteBtn.dataset.memo = item.memo; // Use memo to identify for deletion
+                                        deleteBtn.dataset.id = item.id; // Use id to identify for deletion
                         
                                         li.appendChild(checkboxWrapper);
                                         li.appendChild(detailsDiv);
@@ -248,13 +268,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Add event listeners for checkboxes and delete buttons
                         todoListElement.querySelectorAll('.todo-item input[type="checkbox"]').forEach(checkbox => {
                             checkbox.addEventListener('change', (e) => {
-                                const itemTitle = e.target.dataset.title;
-                                const itemTag = e.target.dataset.tag;
+                                const itemId = e.target.dataset.id; // IDを取得
                                 const newCompletedState = e.target.checked;
             
-                                // Update all occurrences of this todo item in scheduleData
+                                // IDに基づいてscheduleData内のアイテムを更新
                                 for (const time in scheduleData) {
-                                    if (scheduleData[time].title === itemTitle && scheduleData[time].tag === itemTag && scheduleData[time].isTodo) {
+                                    if (scheduleData[time].id === itemId) { // IDで特定
                                         scheduleData[time].completed = newCompletedState;
                                     }
                                 }
@@ -266,13 +285,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
                         todoListElement.querySelectorAll('.todo-item .delete-btn').forEach(button => {
                             button.addEventListener('click', (e) => {
-                                const itemTitle = e.target.closest('.delete-btn').dataset.title;
-                                const itemTag = e.target.closest('.delete-btn').dataset.tag;
+                                const itemId = e.target.closest('.delete-btn').dataset.id; // IDを取得
             
-                                if (confirm(`ToDo「${itemTitle}」を削除しますか？`)) {
-                                    // Delete all occurrences of this todo item in scheduleData
+                                if (confirm(`ToDoを削除しますか？`)) { // 確認メッセージを汎用的に
                                     for (const time in scheduleData) {
-                                        if (scheduleData[time].title === itemTitle && scheduleData[time].tag === itemTag && scheduleData[time].isTodo) {
+                                        if (scheduleData[time].id === itemId) { // IDで特定
                                             delete scheduleData[time];
                                         }
                                     }
@@ -319,10 +336,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
                         // Now, process the list to add classes for continuous blocks
                         for (let i = 0; i < scheduleItems.length; i++) {
-                            const { time, item } = scheduleItems[i];
-                            const li = document.createElement('li');
-                            li.dataset.time = time;
-            
+                                            const { time, item } = scheduleItems[i];
+                                            const li = document.createElement('li');
+                                            li.dataset.time = time;
+                                            if (item && item.id) { // itemとitem.idが存在する場合のみ追加
+                                                li.dataset.id = item.id;
+                                            }            
                             const prevItem = (i > 0) ? scheduleItems[i - 1].item : null;
                             const nextItem = (i < scheduleItems.length - 1) ? scheduleItems[i + 1].item : null;
             
@@ -358,6 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 checkbox.className = 'task-checkbox';
                                 checkbox.checked = item.completed || false;
                                 checkbox.dataset.time = time;
+                                checkbox.dataset.id = item.id; // 追加
                                 li.appendChild(checkbox);
                             }
             
@@ -386,14 +406,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
             
                     // --- Modal Logic ---
-                    const openModal = (time) => {
-                        currentlyEditingTime = time;
-                        const item = scheduleData[time] || {};
-                        modalTime.textContent = `${time}の予定`;
-                        modalTitle.value = item.title || '';
-                        modalMemo.value = item.memo || '';
-                        modalIsTodo.checked = item.isTodo || false;
-            
+                            const openModal = (time, taskId = null) => {
+                                currentlyEditingTime = time;
+                                currentlyEditingTaskId = taskId; // 追加
+                                const item = scheduleData[time]?.find(task => task.id === taskId) || {}; // taskIdでタスクを特定
+                                modalTime.textContent = `${time}の予定`;
+                                modalTitle.value = item.title || '';
+                                modalMemo.value = item.memo || '';
+                                modalIsTodo.checked = item.isTodo || false;            
                         modalEndTime.innerHTML = '';
                         for (let i = parseInt(time.split(':')[0]); i <= 23; i++) {
                             const optionTime = `${String(i).padStart(2, '0')}:00`;
@@ -432,32 +452,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
             
                     // --- Event Listeners ---
-                    scheduleList.addEventListener('click', (e) => {
-                        if (e.target.classList.contains('task-checkbox')) {
-                            const time = e.target.dataset.time;
-                            const item = scheduleData[time];
-                            if (item && item.isTodo) {
-                                const newCompletedState = e.target.checked;
-                                // Propagate change to all items in the same block
-                                for (const key in scheduleData) {
-                                    if (scheduleData[key].title === item.title && scheduleData[key].tag === item.tag && scheduleData[key].isTodo) {
-                                        scheduleData[key].completed = newCompletedState;
+                                scheduleList.addEventListener('click', (e) => {
+                                    if (e.target.classList.contains('task-checkbox')) {
+                                        const itemId = e.target.dataset.id; // IDを取得
+                                        const newCompletedState = e.target.checked;
+                                        
+                                        // IDに基づいてscheduleData内のアイテムを更新
+                                        for (const time in scheduleData) {
+                                            if (scheduleData[time].id === itemId) { // IDで特定
+                                                scheduleData[time].completed = newCompletedState;
+                                            }
+                                        }
+                                        saveScheduleData();
+                                        renderSchedule();
+                                        updateAchievementChart();
+                                        renderTodoList();
+                                        return;
                                     }
-                                }
-                                saveScheduleData();
-                                renderSchedule();
-                                updateAchievementChart();
-                                renderTodoList(); // Add this line
-                            }
-                            return;
-                        }
-                        // Do not open modal for study room events
-                        const li = e.target.closest('li:not(.is-study-room-event)');
-                        if (li) {
-                            openModal(li.dataset.time);
-                        }
-                    });
-            
+                                    // Do not open modal for study room events
+                                                    const li = e.target.closest('li:not(.is-study-room-event)');
+                                                    if (li) {
+                                                        const time = li.dataset.time;
+                                                        const taskId = li.dataset.id; // IDを取得
+                                                        openModal(time, taskId); // IDも渡す
+                                                    }                                });            
                     modalCloseBtn.addEventListener('click', closeModal);
                     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
             
@@ -472,74 +490,73 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
             
-                    modalSaveBtn.addEventListener('click', () => {
-                        if (!currentlyEditingTime) return;
-                        const newTitle = modalTitle.value.trim();
-                        if (!newTitle) { alert('タイトルを入力してください。'); return; }
-            
-                        const selectedTagEl = modalTags.querySelector('.selected');
-                        const newTag = selectedTagEl ? selectedTagEl.dataset.tag : null;
-                        const newIsTodo = modalIsTodo.checked;
-                        const newMemo = modalMemo.value.trim();
-                        const startTime = parseInt(currentlyEditingTime.split(':')[0]);
-                        const endTime = parseInt(modalEndTime.value.split(':')[0]);
-            
-                        for (let i = startTime; i <= endTime; i++) {
-                            const time = `${String(i).padStart(2, '0')}:00`;
-                            scheduleData[time] = {
-                                title: newTitle,
-                                tag: newTag,
-                                memo: newMemo,
-                                isTodo: newIsTodo,
-                                completed: newIsTodo ? (scheduleData[time]?.completed || false) : false
-                            };
-                        }
-                        saveScheduleData();
-                        renderSchedule();
-                        updateAchievementChart();
-                        renderTodoList(); // Add this line
-                        closeModal();
-                    });
-            
-                    modalDeleteBtn.addEventListener('click', () => {
-                        if (!currentlyEditingTime) return;
-                        const itemToDelete = scheduleData[currentlyEditingTime];
-                        if (!itemToDelete) { closeModal(); return; }
-            
-                        let startTime = parseInt(currentlyEditingTime.split(':')[0]);
-                        let endTime = startTime;
-                        for (let i = startTime - 1; i >= 7; i--) {
-                            const prevTime = `${String(i).padStart(2, '0')}:00`;
-                            if (scheduleData[prevTime] && scheduleData[prevTime].title === itemToDelete.title && scheduleData[prevTime].tag === itemToDelete.tag && scheduleData[prevTime].isTodo === itemToDelete.isTodo) {
-                                startTime = i;
-                            } else {
-                                break;
-                            }
-                        }
-                        for (let i = endTime + 1; i <= 23; i++) {
-                            const nextTime = `${String(i).padStart(2, '0')}:00`;
-                            if (scheduleData[nextTime] && scheduleData[nextTime].title === itemToDelete.title && scheduleData[nextTime].tag === itemToDelete.tag && scheduleData[nextTime].isTodo === itemToDelete.isTodo) {
-                                endTime = i;
-                            } else {
-                                break;
-                            }
-                        }
-            
-                        const startTimeStr = `${String(startTime).padStart(2, '0')}:00`;
-                        const endTimeStr = `${String(endTime).padStart(2, '0')}:00`;
-                        if (confirm(`${startTimeStr}から${endTimeStr}の予定「${itemToDelete.title}」を削除しますか？`)) {
-                            for (let i = startTime; i <= endTime; i++) {
-                                const time = `${String(i).padStart(2, '0')}:00`;
-                                delete scheduleData[time];
-                            }
-                            saveScheduleData();
-                            renderSchedule();
-                            updateAchievementChart();
-                            renderTodoList(); // Add this line
-                            closeModal();
-                        }
-                    });
-            
+                            modalSaveBtn.addEventListener('click', () => {
+                                if (!currentlyEditingTime) return;
+                                const newTitle = modalTitle.value.trim();
+                                if (!newTitle) { alert('タイトルを入力してください。'); return; }
+                    
+                                const selectedTagEl = modalTags.querySelector('.selected');
+                                const newTag = selectedTagEl ? selectedTagEl.dataset.tag : null;
+                                const newIsTodo = modalIsTodo.checked;
+                                const newMemo = modalMemo.value.trim();
+                                const startTime = parseInt(currentlyEditingTime.split(':')[0]);
+                                const endTime = parseInt(modalEndTime.value.split(':')[0]);
+                    
+                                // 編集中のタスクのID
+                                const editingTaskId = currentlyEditingTaskId; // openModalでセットされる
+                    
+                                // 既存のタスクを削除（編集の場合）
+                                if (editingTaskId) {
+                                    for (const timeKey in scheduleData) {
+                                        if (Array.isArray(scheduleData[timeKey])) {
+                                            scheduleData[timeKey] = scheduleData[timeKey].filter(task => task.id !== editingTaskId);
+                                        }
+                                    }
+                                }
+                    
+                                // 新しいタスクオブジェクトを作成
+                                const newTask = {
+                                    id: editingTaskId || `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, // 編集中のIDを引き継ぐか、新しいIDを生成
+                                    title: newTitle,
+                                    tag: newTag,
+                                    memo: newMemo,
+                                    isTodo: newIsTodo,
+                                    completed: newIsTodo ? false : false // 常に未完了として初期化
+                                };
+                    
+                                for (let i = startTime; i <= endTime; i++) {
+                                    const time = `${String(i).padStart(2, '0')}:00`;
+                                    if (!scheduleData[time]) {
+                                        scheduleData[time] = []; // 配列を初期化
+                                    }
+                                    // 新しいタスクオブジェクトのコピーを配列に追加
+                                    scheduleData[time].push({ ...newTask }); // コピーを追加
+                                }
+                                saveScheduleData();
+                                renderSchedule();
+                                updateAchievementChart();
+                                renderTodoList();
+                                closeModal();
+                            });            
+                            modalDeleteBtn.addEventListener('click', () => {
+                                if (!currentlyEditingTime || !currentlyEditingTaskId) return; // currentlyEditingTaskIdもチェック
+                    
+                                // 削除対象のタスクID
+                                const taskIdToDelete = currentlyEditingTaskId;
+                    
+                                if (confirm(`この予定を削除しますか？`)) {
+                                    for (const timeKey in scheduleData) {
+                                        if (Array.isArray(scheduleData[timeKey])) {
+                                            scheduleData[timeKey] = scheduleData[timeKey].filter(task => task.id !== taskIdToDelete);
+                                        }
+                                    }
+                                    saveScheduleData();
+                                    renderSchedule();
+                                    updateAchievementChart();
+                                    renderTodoList();
+                                    closeModal();
+                                }
+                            });            
                     // --- Current Time Highlight ---
                     const highlightCurrentTime = (shouldScroll = false) => {
                         updateAdvisorGreeting(); // Update greeting periodically

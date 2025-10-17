@@ -168,3 +168,58 @@
         padding: 20px;
     }
 }
+
+/* --- 面談記録 --- */
+.meeting-minutes .minute-item {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.meeting-minutes .minute-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.meeting-minutes h4 {
+    font-size: 1.1rem;
+    color: var(--text-headings);
+    margin-bottom: 10px;
+}
+
+.meeting-minutes .counselor-name {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.meeting-minutes p {
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.meeting-minutes p strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.meeting-minutes ul {
+    list-style-position: inside;
+    padding-left: 5px;
+}
+
+.meeting-minutes .view-all-link {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.meeting-minutes .view-all-link:hover {
+    text-decoration: underline;
+}

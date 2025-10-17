@@ -7,59 +7,80 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="details-content" style="padding: 40px; text-align: center;">
-            <h1 class="section-title">月間予定表</h1></h1></h1>
-            <div id="calendar-container">
-                <div id="calendar-header">
-                    <button id="prev-month-btn">&lt;</button>
-                    <h2 id="month-year"></h2>
-                    <button id="next-month-btn">&gt;</button>
-                </div>
-                <div id="calendar-controls">
-                    <button id="schedule-mode-btn" class="btn">日程調整モード</button>
-                </div>
-                <div id="calendar-body"></div>
+    <div class="dashboard-wrapper">
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Self-discipline</h2>
             </div>
-            <a href="dashboard.html" class="btn btn-secondary" style="margin-top: 20px;">ホームページに戻る</a>
-        </div>
-    </div>
-    <script src="dashboard.js"></script>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> ダッシュボード</a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i> プロフィール</a></li>
+                    <li class="active"><a href="details.html"><i class="fas fa-calendar-alt"></i> 月間予定表</a></li>
+                    <li><a href="study-room.html"><i class="fas fa-book-reader"></i> 自習室</a></li>
+                    <li><a href="index.html" id="logout-link"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-    <!-- Event Edit Modal -->
-    <div id="calendar-event-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-date"></h3>
-                <button id="modal-close-btn" class="btn-icon">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="event-title">タイトル</label>
-                    <input type="text" id="event-title" placeholder="予定を入力">
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="event-start-time">開始時間</label>
-                        <input type="time" id="event-start-time" class="modal-body"/>
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <div class="details-content" style="text-align: center;">
+                <h1 class="section-title">月間予定表</h1>
+                <div id="calendar-container">
+                    <div id="calendar-header">
+                        <button id="prev-month-btn">&lt;</button>
+                        <h2 id="month-year"></h2>
+                        <button id="next-month-btn">&gt;</button>
                     </div>
-                    <div class="form-group">
-                        <label for="event-end-time">終了時間</label>
-                        <input type="time" id="event-end-time" class="modal-body"/>
+                    <div id="calendar-controls">
+                        <button id="schedule-mode-btn" class="btn">日程調整モード</button>
+                    </div>
+                    <div id="calendar-body"></div>
+                </div>
+                <a href="dashboard.html" class="btn btn-secondary" style="margin-top: 20px;">ホームページに戻る</a>
+            </div>
+            
+            <!-- Event Edit Modal -->
+            <div id="calendar-event-modal" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-date"></h3>
+                        <button id="modal-close-btn" class="btn-icon">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="event-title">タイトル</label>
+                            <input type="text" id="event-title" placeholder="予定を入力">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="event-start-time">開始時間</label>
+                                <input type="time" id="event-start-time" class="modal-body"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="event-end-time">終了時間</label>
+                                <input type="time" id="event-end-time" class="modal-body"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-memo">メモ</label>
+                            <textarea id="event-memo" rows="3" placeholder="補足情報を入力"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="event-delete-btn" class="btn btn-secondary">削除</button>
+                        <button id="event-save-btn" class="btn btn-primary">保存</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="event-memo">メモ</label>
-                    <textarea id="event-memo" rows="3" placeholder="補足情報を入力"></textarea>
-                </div>
             </div>
-            <div class="modal-footer">
-                <button id="event-delete-btn" class="btn btn-secondary">削除</button>
-                <button id="event-save-btn" class="btn btn-primary">保存</button>
-            </div>
-        </div>
+        </main>
     </div>
+    <script src="common.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html>
