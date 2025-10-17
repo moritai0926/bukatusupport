@@ -117,6 +117,7 @@
 /* --- 右カラム --- */
 .chart-container {
     width: 100%;
+    max-height: 300px;
 }
 
 .todo-list ul {
