@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mock Exam Chart (from original profile.js)
+    // Mock Exam Chart
     const mockExamCtx = document.getElementById('mockExamChart');
     if (mockExamCtx) {
         new Chart(mockExamCtx, {
@@ -37,9 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2-Week Plan ---
+    // --- 2-Week Plan & ToDo List ---
     const planGrid = document.getElementById('plan-grid');
     const editPlanBtn = document.getElementById('edit-plan-btn');
+    const todoListContainer = document.getElementById('plan-todo-list');
     
     // Modal Elements
     const modal = document.getElementById('plan-modal');
@@ -63,6 +64,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const savePlanData = () => {
             localStorage.setItem('twoWeekPlan', JSON.stringify(planData));
+        };
+
+        const renderTodoList = () => {
+            if (!todoListContainer) return;
+            todoListContainer.innerHTML = '';
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const twoWeeksLater = new Date(today);
+            twoWeeksLater.setDate(today.getDate() + 14);
+
+            const allTasks = Object.entries(planData)
+                .map(([cellId, task]) => {
+                    const [year, month, day, hour] = cellId.split('-').map(Number);
+                    const taskDate = new Date(year, month - 1, day, hour);
+                    return { ...task, date: taskDate, id: cellId };
+                })
+                .filter(task => task.date >= today && task.date < twoWeeksLater && task.title)
+                .sort((a, b) => a.date - b.date);
+
+            if (allTasks.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = '計画表にタスクがありません。';
+                li.style.textAlign = 'center';
+                li.style.color = 'var(--text-secondary)';
+                todoListContainer.appendChild(li);
+                return;
+            }
+
+            allTasks.forEach(task => {
+                const li = document.createElement('li');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = task.completed;
+                checkbox.dataset.id = task.id;
+                checkbox.id = `todo-${task.id}`;
+
+                const label = document.createElement('label');
+                const dateString = `${task.date.getMonth() + 1}/${task.date.getDate()}`;
+                label.textContent = `[${dateString}] ${task.title}`;
+                label.htmlFor = `todo-${task.id}`;
+                
+                if (task.completed) {
+                    li.classList.add('completed');
+                }
+
+                li.appendChild(checkbox);
+                li.appendChild(label);
+                todoListContainer.appendChild(li);
+            });
         };
 
         const renderPlanGrid = () => {
@@ -170,13 +221,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const tag = selectedTagEl ? selectedTagEl.dataset.tag : null;
 
             if (title && tag) {
-                planData[currentlyEditingCellId] = { title, tag };
+                const existingTask = planData[currentlyEditingCellId];
+                planData[currentlyEditingCellId] = { 
+                    title, 
+                    tag,
+                    completed: existingTask ? existingTask.completed : false 
+                };
             } else {
                 delete planData[currentlyEditingCellId];
             }
             
             savePlanData();
             renderPlanGrid();
+            renderTodoList();
             closeModal();
         };
 
@@ -185,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             delete planData[currentlyEditingCellId];
             savePlanData();
             renderPlanGrid();
+            renderTodoList();
             closeModal();
         };
 
@@ -209,9 +267,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 openModal(cell.dataset.cellId);
             }
         });
+        if (todoListContainer) {
+            todoListContainer.addEventListener('change', (e) => {
+                if (e.target.type === 'checkbox') {
+                    const taskId = e.target.dataset.id;
+                    if (planData[taskId]) {
+                        planData[taskId].completed = e.target.checked;
+                        savePlanData();
+                        renderTodoList();
+                    }
+                }
+            });
+        }
 
         // Initial Load
         loadPlanData();
         renderPlanGrid();
+        renderTodoList();
     }
 });
