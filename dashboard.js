@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- Achievement Chart ---
         const updateAchievementChart = () => {
             const advisorComment = document.getElementById('advisor-comment');
-            const allTasks = Object.values(scheduleData);
+            const allTasks = Object.values(scheduleData).flat();
             const todoTasks = allTasks.filter(item => item.isTodo);
             const uniqueTodoTasks = [...new Map(todoTasks.map(item => [item.id, item])).values()]; // item.idをキーに
             const completedTodoTasks = uniqueTodoTasks.filter(item => item.completed);
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
                         todoListElement.innerHTML = ''; // Clear existing list
             
-                        const allTasks = Object.values(scheduleData);
+                        const allTasks = Object.values(scheduleData).flat();
                         const todoItemsToDisplay = [...new Map(allTasks.filter(item => item.isTodo).map(item => [item.id, item])).values()];
             
                         const noTodoMessage = document.getElementById('no-todo-message');
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const time = `${hour}:00`;
                             const studyRoomSlotId = `${todayStr}-${hour}`;
                             
-                            let item = scheduleData[time] || {};
+                            let item = (scheduleData[time] && scheduleData[time][0]) || {};
                             let isStudyRoom = false;
             
                             if (studyRoomReservations[studyRoomSlotId]) {
