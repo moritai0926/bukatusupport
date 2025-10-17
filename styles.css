@@ -903,6 +903,11 @@ body.light-mode #particles-js { display: none; } /* ライトモードでは非�
     animation: fadeIn 1.5s ease-in-out;
 }
 
+#passion .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -919,11 +924,14 @@ body.light-mode #particles-js { display: none; } /* ライトモードでは非�
 
 .passion-philosophy {
     font-family: 'Noto Serif JP', serif;
-    font-weight: 300;
-    font-size: 2.5rem;
-    color: var(--primary-accent);
-    margin-bottom: 30px;
+    font-weight: 700; /* Bolder */
+    font-size: 2.8rem; /* Slightly larger */
+    margin-bottom: 40px; /* More space */
     text-align: center;
+    background: -webkit-linear-gradient(45deg, var(--primary-accent), #ffc300); /* Gold gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Add a subtle shadow */
 }
 
 .passion-content p {
