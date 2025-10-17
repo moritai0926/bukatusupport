@@ -1077,9 +1077,15 @@ body.light-mode .passion-content p {
 }
 
 .philosophy-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
+    font-size: 1.4rem; /* Increased font size */
+    font-weight: 500; /* Increased font weight */
+    line-height: 1.9; /* Increased line height */
     color: var(--text-primary);
+    background-color: rgba(0,0,0,0.1); /* Subtle background */
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-accent);
+    display: inline-block; /* To make padding and border work well */
 }
 
 .value-section {
