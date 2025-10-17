@@ -1035,3 +1035,104 @@ body.light-mode .passion-content p {
         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 }
+
+/* --- Philosophy (V/M/V) Section --- */
+.philosophy-section {
+    padding: 100px 0;
+    background-color: transparent; /* Changed to transparent */
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.philosophy-item {
+    margin-bottom: 80px; /* Increased margin */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.philosophy-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    background: -webkit-linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.philosophy-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-headings);
+    margin-bottom: 15px;
+}
+
+.philosophy-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.value-section {
+    margin-top: 80px;
+}
+
+.value-section .section-title {
+    margin-bottom: 60px; /* Increased margin */
+    font-size: 2.8rem;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    text-align: left;
+}
+
+.value-card {
+    background-color: var(--background-secondary);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    border-top: 4px solid var(--primary-accent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Darker hover shadow */
+}
+
+.value-icon {
+    font-size: 2.5rem;
+    color: var(--primary-accent);
+    margin-bottom: 20px;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-headings);
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+/* Light mode adjustments */
+body.light-mode .philosophy-section {
+    background-color: var(--background-primary);
+}
+
+body.light-mode .value-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+body.light-mode .value-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
