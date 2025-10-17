@@ -1095,7 +1095,7 @@ body.light-mode .passion-content p {
 
 .value-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 40px;
     text-align: left;
 }
@@ -1156,7 +1156,7 @@ body.light-mode .passion-content p {
 
 .value-card h3 {
     font-family: 'Noto Serif JP', serif; /* Serif font */
-    font-size: 1.8rem; /* Larger font */
+    font-size: 1.6rem; /* Adjusted font size */
     font-weight: 700;
     color: var(--text-headings);
     margin-bottom: 20px;
