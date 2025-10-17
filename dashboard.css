@@ -399,49 +399,81 @@ body {
     content: '— ';
 }
 
-/* --- Daily Schedule Styles --- */
-.daily-schedule .schedule-list { list-style: none; padding: 0; max-height: 500px; overflow-y: auto; padding-right: 10px; }
-.schedule-list li { display: flex; align-items: flex-start; padding: 6px 5px; border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; border-left: 5px solid transparent; }
-.schedule-list li:not(.has-no-title):hover { background-color: rgba(255,255,255,0.03); cursor: pointer; }
-.schedule-list li:last-child { border-bottom: none; }
-.schedule-list .time { font-weight: 600; color: var(--text-secondary); width: 60px; flex-shrink: 0; padding-top: 2px; }
-.schedule-list .details { display: flex; flex-direction: column; flex-grow: 1; overflow: hidden; padding: 0 10px; }
-.schedule-list .title { flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.schedule-list .memo { 
-    font-size: 0.8rem; 
-    color: var(--text-secondary); 
-    white-space: normal; /* Allow wrapping */
-    word-break: break-word; /* Break long words */
+/* --- Daily ToDo List Styles --- */
+.daily-schedule .card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.daily-schedule .card-header-flex h3 {
+    margin-bottom: 0;
+}
+
+.todo-list-items {
+    list-style: none;
+    padding: 0;
+    max-height: 450px; /* Set a max height for scroll */
+    overflow-y: auto; /* Enable scroll */
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-item.completed .title {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.todo-item .checkbox-wrapper {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.todo-item .details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.todo-item .title {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.todo-item .memo {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
     margin-top: 4px;
 }
-.schedule-list .title.placeholder { color: var(--text-secondary); opacity: 0.6; }
-.task-checkbox { margin-right: 10px; width: 18px; height: 18px; cursor: pointer; margin-top: 4px; }
-li.completed .title, li.completed .memo { text-decoration: line-through; opacity: 0.6; }
 
-/* Current Time Highlight */
-.schedule-list li.current-time {
-    background-color: rgba(255, 215, 0, 0.08);
+.todo-item .edit-btn,
+.todo-item .delete-btn {
+    margin-left: 10px;
+    opacity: 0; /* Hide by default */
+    transition: opacity 0.3s ease;
 }
-.schedule-list li.current-time .time {
-    color: var(--primary-accent);
-    font-weight: 700;
+.todo-item:hover .edit-btn,
+.todo-item:hover .delete-btn {
+    opacity: 1; /* Show on hover */
 }
 
-/* Schedule Tag Colors */
-.schedule-list li.tag-study-room { border-left-color: #FC8181; /* 炎のような赤色 */ }
-.schedule-list li.tag-study { border-left-color: var(--tag-study); }
-.schedule-list li.tag-school { border-left-color: var(--tag-school); }
-.schedule-list li.tag-club { border-left-color: var(--tag-club); }
-.schedule-list li.tag-meal { border-left-color: var(--tag-meal); }
-
-/* New Checkbox Wrapper Style */
-.checkbox-wrapper { display: flex; align-items: center; gap: 10px; }
-.checkbox-wrapper label { margin-bottom: 0; } /* Reset label margin */
-
-/* --- Modal Styles --- */
-.schedule-list li.tag-sleep { border-left-color: var(--tag-sleep); }
-.schedule-list li.tag-travel { border-left-color: var(--tag-travel); }
-.schedule-list li.tag-other { border-left-color: var(--tag-other); }
+.no-todo-item {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+}
 
 /* --- Modal Styles --- */
 .modal-overlay {
