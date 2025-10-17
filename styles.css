@@ -1077,24 +1077,11 @@ body.light-mode .passion-content p {
 }
 
 .philosophy-text {
-    font-size: 1.5rem; /* Further increase font size */
-    font-weight: 600; /* Bolder */
-    line-height: 2;
-    color: var(--text-primary);
-    background: linear-gradient(145deg, rgba(45, 55, 72, 0.7), rgba(26, 32, 44, 0.7));
-    padding: 30px 40px;
-    border-radius: 15px;
-    display: inline-block;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 15px rgba(0,0,0,0.2);
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-.philosophy-text .highlight {
-    background: -webkit-linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
+    font-size: 1.3rem; /* Adjusted font size */
+    font-weight: 500;
+    line-height: 1.9;
+    color: var(--primary-accent); /* Single yellow color */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Keep a subtle shadow for readability */
 }
 
 .value-section {
